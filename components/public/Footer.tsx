@@ -1,18 +1,24 @@
 import Link from "next/link"
+import Image from "next/image"
 
 export default function Footer() {
   return (
     <footer className="bg-surface-2 border-t border-border">
-      <div className="max-w-6xl mx-auto px-6 py-12 md:py-16">
-        <div className="grid md:grid-cols-4 gap-10">
+      <div className="max-w-6xl mx-auto px-6 py-12 grid grid-rows-4 items-center gap-2 md:py-16">
+        <div className="">
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 rounded-xl bg-brand flex items-center justify-center">
-                <span className="text-brand-foreground font-bold text-lg">
-                  CA
-                </span>
-              </div>
+             {/* Logo */}
+            <Link href="/" className="flex flex-row gap-2 items-center">
+              <Image
+                src="/logo-centres-abraham.webp"
+                alt="logo-centres-abraham"
+                width={40}
+                height={40}
+                priority
+              />
+              <p className="font-bold">Centres Abraham</p>
+            </Link>
 
               <span className="text-xl font-semibold text-text">
                 Centres Abraham
@@ -111,7 +117,7 @@ export default function Footer() {
             Mentions légales
           </Link>
         </div>
-      </div>
+
     </footer>
   )
 }

@@ -27,7 +27,11 @@ export default function NavBar() {
   const isActive = (href: string) => pathname === href
 
   // “soft bg” basé sur l’alpha dans :root
-  const activeBg = "bg-[hsl(var(--brand)/var(--brand-soft-alpha))]"
+      const activeClass =
+        "text-[#006747] bg-[#006747]/10"
+
+      const inactiveClass =
+        "text-muted hover:text-brand hover:bg-surface-2"
 
   return (
     <div className="min-h-screen bg-surface text-text">
@@ -55,8 +59,8 @@ export default function NavBar() {
                   className={[
                     "px-4 py-2 rounded-full text-sm font-medium transition-all duration-300",
                     isActive(item.href)
-                      ? `text-brand ${activeBg}`
-                      : "text-muted hover:text-brand hover:bg-surface-2",
+                      ? activeClass
+                      : inactiveClass,
                   ].join(" ")}
                 >
                   {item.name}
@@ -81,8 +85,8 @@ export default function NavBar() {
                         className={[
                           "block px-4 py-2 text-sm transition-colors",
                           isActive(item.href)
-                            ? `text-brand ${activeBg}`
-                            : "text-muted hover:text-brand hover:bg-surface-2",
+                            ? activeClass
+                            : inactiveClass
                         ].join(" ")}
                       >
                         {item.name}
@@ -137,8 +141,8 @@ export default function NavBar() {
                     className={[
                       "block px-4 py-3 rounded-xl text-sm font-medium transition-colors",
                       isActive(item.href)
-                        ? `text-brand ${activeBg}`
-                        : "text-muted hover:text-brand hover:bg-surface-2",
+                        ? activeClass
+                        : inactiveClass
                     ].join(" ")}
                   >
                     {item.name}
