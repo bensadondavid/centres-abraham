@@ -10,6 +10,7 @@ import Image from "next/image"
 type NavItem = { name: string; href: string }
 
 export default function NavBar() {
+
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const pathname = usePathname()
 
@@ -23,6 +24,8 @@ export default function NavBar() {
     { name: "FAQ", href: "/faq" },
     { name: "Contact", href: "/contact" },
   ]
+
+  const scrollToTop = ()=>(window.scrollTo({top : 0, behavior : "smooth"}))
 
   const isActive = (href: string) => pathname === href
 
@@ -39,7 +42,7 @@ export default function NavBar() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="flex items-center justify-between h-16 md:h-20">
             {/* Logo */}
-            <Link href="/" className="flex flex-row gap-2 items-center">
+            <Link href="/" className="flex flex-row gap-2 items-center" onClick={scrollToTop}>
               <Image
                 src="/logo-centres-abraham.webp"
                 alt="logo-centres-abraham"
@@ -114,9 +117,25 @@ export default function NavBar() {
                 aria-label="Ouvrir le menu"
               >
                 {mobileMenuOpen ? (
-                  <X className="w-6 h-6 text-muted" />
+                  <motion.div
+                    key="close"
+                    initial={{ rotate: -90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: 90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <X className="w-6 h-6 text-muted" />
+                  </motion.div>
                 ) : (
-                  <Menu className="w-6 h-6 text-muted" />
+                  <motion.div
+                    key="menu"
+                    initial={{ rotate: 90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: -90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Menu className="w-6 h-6 text-muted" />
+                  </motion.div>
                 )}
               </button>
             </div>
@@ -127,9 +146,9 @@ export default function NavBar() {
         <AnimatePresence>
           {mobileMenuOpen && (
             <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
               className="xl:hidden overflow-hidden bg-surface border-t border-border"
             >
               <div className="px-4 py-4 space-y-1">
