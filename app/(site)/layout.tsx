@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import '@/app/globals.css'
 import NavBar from '@/components/public/Navbar'
 import Footer from "@/components/public/Footer";
+import WhatsappBtn from "@/components/ui/WhatsappBtn";
 
 
 export const metadata: Metadata = {
@@ -17,6 +18,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <main>
             {children}
           </main>
+          <WhatsappBtn />
         <Footer />
       </body>
     </html>

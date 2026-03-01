@@ -37,7 +37,7 @@ export default function NavBar() {
         "text-muted hover:text-brand hover:bg-surface-2"
 
   return (
-    <div className="min-h-screen bg-surface text-text">
+    <>
       <header className="fixed top-0 left-0 right-0 z-50 bg-surface/95 backdrop-blur-md border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="flex items-center justify-between h-16 md:h-20">
@@ -65,6 +65,7 @@ export default function NavBar() {
                       ? activeClass
                       : inactiveClass,
                   ].join(" ")}
+                  onClick={scrollToTop}
                 >
                   {item.name}
                 </Link>
@@ -80,7 +81,7 @@ export default function NavBar() {
                 </button>
 
                 <div className="absolute top-full right-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                  <div className="bg-surface rounded-2xl shadow-xl border border-border py-2 min-w-[200px]">
+                  <div className="bg-surface rounded-2xl shadow-xl border border-border py-2 min-w-50">
                     {navigation.slice(5).map((item) => (
                       <Link
                         key={item.href}
@@ -91,6 +92,7 @@ export default function NavBar() {
                             ? activeClass
                             : inactiveClass
                         ].join(" ")}
+                        onClick={scrollToTop}
                       >
                         {item.name}
                       </Link>
@@ -156,7 +158,7 @@ export default function NavBar() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    onClick={() => setMobileMenuOpen(false)}
+                    onClick={() => {setMobileMenuOpen(false) ; scrollToTop() }}
                     className={[
                       "block px-4 py-3 rounded-xl text-sm font-medium transition-colors",
                       isActive(item.href)
@@ -180,6 +182,6 @@ export default function NavBar() {
           )}
         </AnimatePresence>
       </header>
-    </div>
+      </>
   )
 }

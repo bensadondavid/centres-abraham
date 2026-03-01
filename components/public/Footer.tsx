@@ -4,10 +4,9 @@ import Image from "next/image"
 export default function Footer() {
   return (
     <footer className="bg-surface-2 border-t border-border">
-      <div className="max-w-6xl mx-auto px-6 py-12 grid grid-rows-4 items-center gap-2 md:py-16">
+      <div className="max-w-6xl mx-auto px-6 py-12 grid grid-rows-4 grid-cols-none gap-2 md:pt-16 lg:grid-cols-4 lg:grid-rows-none">
         <div className="">
           {/* Brand */}
-          <div>
              {/* Logo */}
             <Link href="/" className="flex flex-row gap-2 items-center">
               <Image
@@ -19,11 +18,6 @@ export default function Footer() {
               />
               <p className="font-bold">Centres Abraham</p>
             </Link>
-
-              <span className="text-xl font-semibold text-text">
-                Centres Abraham
-              </span>
-            </div>
 
             <p className="text-muted text-sm leading-relaxed">
               Service d&apos;orientation et d&apos;accompagnement pour la
@@ -37,7 +31,7 @@ export default function Footer() {
               Navigation
             </h4>
 
-            <div className="grid grid-cols-2 gap-2">
+            <div className="flex flex-col gap-2">
               <Link
                 href="/"
                 className="text-sm text-muted hover:text-brand transition-colors"
@@ -105,7 +99,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="mt-12 pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="mt-12 sm:mx-30 py-5 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted">
             © {new Date().getFullYear()} Centres Abraham. Tous droits réservés.
           </p>
