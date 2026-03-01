@@ -30,11 +30,9 @@ export default function NavBar() {
   const isActive = (href: string) => pathname === href
 
   // “soft bg” basé sur l’alpha dans :root
-      const activeClass =
-        "text-[#006747] bg-[#006747]/10"
+      const activeClass = "text-brand bg-brand-soft"
 
-      const inactiveClass =
-        "text-muted hover:text-brand hover:bg-surface-2"
+      const inactiveClass = "text-muted hover:text-brand hover:bg-surface-2"
 
   return (
     <>

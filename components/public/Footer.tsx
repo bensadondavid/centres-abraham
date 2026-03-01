@@ -4,11 +4,11 @@ import Image from "next/image"
 export default function Footer() {
   return (
     <footer className="bg-surface-2 border-t border-border">
-      <div className="max-w-6xl mx-auto px-6 py-12 grid grid-rows-4 grid-cols-none gap-2 md:pt-16 lg:grid-cols-4 lg:grid-rows-none">
+      <div className="h-fit max-w-6xl mx-auto px-6 pt-12 pb-4 grid grid-rows-4 text-center items-center gap-4 md:pt-16 lg:grid-cols-4 lg:grid-rows-1 lg:items-start lg:justify-center">
         <div className="">
           {/* Brand */}
              {/* Logo */}
-            <Link href="/" className="flex flex-row gap-2 items-center">
+            <Link href="/" className="flex flex-row items-center w-fit mx-auto pb-2">
               <Image
                 src="/logo-centres-abraham.webp"
                 alt="logo-centres-abraham"
@@ -84,11 +84,11 @@ export default function Footer() {
 
           {/* Map */}
           <div>
-            <h4 className="text-sm font-semibold text-text uppercase tracking-wider mb-4">
+            <h4 className="text-sm font-semibold text-text text-center uppercase tracking-wider mb-4">
               Localisation
             </h4>
 
-            <div className="rounded-lg overflow-hidden shadow-sm border border-border w-[200px] h-[150px]">
+            <div className="rounded-lg overflow-hidden shadow-sm border border-border w-[200px] h-[150px] m-auto">
               <iframe
                 src="https://www.openstreetmap.org/export/embed.html?bbox=-5.1413%2C41.3338%2C9.5619%2C51.0891&layer=mapnik&marker=46.7111%2C2.2104"
                 className="w-full h-full border-0"
@@ -99,7 +99,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="mt-12 sm:mx-30 py-5 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="mt-4 sm:mx-30 py-7 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted">
             © {new Date().getFullYear()} Centres Abraham. Tous droits réservés.
           </p>

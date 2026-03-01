@@ -2,7 +2,8 @@
 
 /* Variables simples */
 :root {
-  --brand: #006747;
+  /* ✅ Base44 brand */
+  --brand: #0891b2;            /* ancien: #006747 */
   --brand-foreground: #ffffff;
 
   --surface: #ffffff;
@@ -13,14 +14,14 @@
 
   --border: #e5e7eb;
 
-  --brand-soft: rgba(0, 103, 71, 0.1);
+  /* ✅ soft brand (même logique, alpha 0.1) */
+  --brand-soft: rgba(8, 145, 178, 0.1);
 }
 
 /* Mapping Tailwind v4 */
 @theme {
   --color-brand: var(--brand);
   --color-brand-foreground: var(--brand-foreground);
-  --color-brand-soft: var(--brand-soft);
 
   --color-surface: var(--surface);
   --color-surface-2: var(--surface-2);
@@ -29,6 +30,9 @@
   --color-muted: var(--text-muted);
 
   --color-border: var(--border);
+
+  /* ✅ ne pas oublier (pour bg-brand-soft, hover:bg-brand-soft, etc.) */
+  --color-brand-soft: var(--brand-soft);
 }
 
 /* Base */
