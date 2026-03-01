@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="">
           {/* Brand */}
              {/* Logo */}
-            <Link href="/" className="flex flex-row items-center w-fit mx-auto pb-2">
+            <Link href="/" className="flex flex-row items-center gap-2 w-fit mx-auto pb-2">
               <Image
                 src="/logo-centres-abraham.webp"
                 alt="logo-centres-abraham"
@@ -90,7 +90,7 @@ export default function Footer() {
 
             <div className="rounded-lg overflow-hidden shadow-sm border border-border w-[200px] h-[150px] m-auto">
               <iframe
-                src="https://www.openstreetmap.org/export/embed.html?bbox=-5.1413%2C41.3338%2C9.5619%2C51.0891&layer=mapnik&marker=46.7111%2C2.2104"
+                src="https://www.openstreetmap.org/export/embed.html?bbox=2.4006%2C48.8419%2C2.4106%2C48.8479&layer=mapnik&marker=48.8449%2C2.4056"
                 className="w-full h-full border-0"
                 loading="lazy"
               />
@@ -109,6 +109,18 @@ export default function Footer() {
             className="text-sm text-muted hover:text-brand transition-colors"
           >
             Mentions légales
+          </Link>
+          <Link
+            href="/cgu"
+            className="text-sm text-muted hover:text-brand transition-colors"
+          >
+            CGU
+          </Link>
+          <Link
+            href="/politique-de-confidentialite"
+            className="text-sm text-muted hover:text-brand transition-colors"
+          >
+            Politique de confidentialité
           </Link>
         </div>
 

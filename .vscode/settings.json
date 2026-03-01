@@ -1,5 +1,6 @@
 {
   "material-icon-theme.folders.associations": {
-    "(site)": "client",
+    "(site)": "global",
+    "(dashboard)" : "secure"
   }
 }
