@@ -9,25 +9,22 @@ type FormData = {
   lastName: string
   phone: string
   email: string
+  weightKg: number | ""
   message: string
   privacyAccepted: boolean
 }
 
-const initialState: FormData = {
-  firstName: "",
-  lastName: "",
-  phone: "",
-  email: "",
-  message: "",
-  privacyAccepted: false,
-}
-
-function isValidEmail(email: string) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())
-}
-
 export default function ContactForm() {
-  const [formData, setFormData] = useState<FormData>(initialState)
+  const [formData, setFormData] = useState<FormData>({
+    firstName: "",
+    lastName: "",
+    phone: "",
+    email: "",
+    weightKg: "",
+    message: "",
+    privacyAccepted: false,
+  })
+
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [success, setSuccess] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -37,8 +34,8 @@ export default function ContactForm() {
       formData.firstName.trim().length > 0 &&
       formData.lastName.trim().length > 0 &&
       formData.phone.trim().length > 0 &&
-      isValidEmail(formData.email) &&
-      formData.message.trim().length > 0 &&
+      formData.email.trim().length > 0 &&
+      formData.weightKg !== "" &&
       formData.privacyAccepted
     )
   }, [formData])
@@ -51,7 +48,14 @@ export default function ContactForm() {
 
     setFormData((prev) => ({
       ...prev,
-      [name]: type === "checkbox" ? checked : value,
+      [name]:
+        type === "checkbox"
+          ? checked
+          : type === "number"
+          ? value === ""
+            ? ""
+            : Number(value)
+          : value,
     }))
   }
 
@@ -61,27 +65,40 @@ export default function ContactForm() {
     setSuccess(false)
 
     if (!canSubmit) {
-      setError("Merci de compléter tous les champs et d’accepter la politique de confidentialité.")
+      setError(
+        "Merci de compléter tous les champs et d’accepter la politique de confidentialité."
+      )
       return
     }
 
     setIsSubmitting(true)
+
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...formData,
-          privacyAcceptedAt: new Date().toISOString(), // preuve de consentement
-          privacyPolicyVersion: "1.0", // optionnel
+          privacyAcceptedAt: new Date().toISOString(),
         }),
       })
 
-      if (!res.ok) throw new Error("Request failed")
+      if (!res.ok) throw new Error()
 
       setSuccess(true)
-      setFormData(initialState)
+
+      setFormData({
+        firstName: "",
+        lastName: "",
+        phone: "",
+        email: "",
+        weightKg: "",
+        message: "",
+        privacyAccepted: false,
+      })
+
       setTimeout(() => setSuccess(false), 6000)
+
     } catch {
       setError("Une erreur est survenue. Veuillez réessayer.")
     } finally {
@@ -91,19 +108,10 @@ export default function ContactForm() {
 
   return (
     <>
-      {success && (
-        <div className="mb-6 p-4 rounded-xl bg-brand-soft border border-border text-brand">
-          Merci ! Votre message a été envoyé avec succès.
-        </div>
-      )}
-
-      {error && (
-        <div className="mb-6 p-4 rounded-xl bg-surface-2 border border-border text-text">
-          {error}
-        </div>
-      )}
+      
 
       <form onSubmit={handleSubmit} className="space-y-5">
+
         <div className="grid sm:grid-cols-2 gap-4">
           <div className="space-y-2">
             <label className="text-sm font-medium">Prénom</label>
@@ -113,7 +121,6 @@ export default function ContactForm() {
               onChange={handleChange}
               required
               className="h-12 w-full rounded-xl border border-border bg-surface px-4 focus:outline-none focus:ring-2 focus:ring-brand/30"
-              autoComplete="given-name"
             />
           </div>
 
@@ -125,7 +132,6 @@ export default function ContactForm() {
               onChange={handleChange}
               required
               className="h-12 w-full rounded-xl border border-border bg-surface px-4 focus:outline-none focus:ring-2 focus:ring-brand/30"
-              autoComplete="family-name"
             />
           </div>
         </div>
@@ -139,7 +145,6 @@ export default function ContactForm() {
             onChange={handleChange}
             required
             className="h-12 w-full rounded-xl border border-border bg-surface px-4 focus:outline-none focus:ring-2 focus:ring-brand/30"
-            autoComplete="tel"
           />
         </div>
 
@@ -152,7 +157,21 @@ export default function ContactForm() {
             onChange={handleChange}
             required
             className="h-12 w-full rounded-xl border border-border bg-surface px-4 focus:outline-none focus:ring-2 focus:ring-brand/30"
-            autoComplete="email"
+          />
+        </div>
+
+        <div className="space-y-2">
+          <label className="text-sm font-medium">Poids (kg)</label>
+          <input
+            name="weightKg"
+            type="number"
+            min="1"
+            step="0.1"
+            value={formData.weightKg}
+            onChange={handleChange}
+            onWheel={(e) => e.currentTarget.blur()}
+            required
+            className="h-12 w-full rounded-xl border border-border bg-surface px-4 focus:outline-none focus:ring-2 focus:ring-brand/30"
           />
         </div>
 
@@ -163,12 +182,10 @@ export default function ContactForm() {
             rows={6}
             value={formData.message}
             onChange={handleChange}
-            required
             className="w-full rounded-xl border border-border bg-surface px-4 py-3 resize-none focus:outline-none focus:ring-2 focus:ring-brand/30"
           />
         </div>
 
-        {/* RGPD */}
         <div className="flex items-start gap-3 pt-2">
           <input
             id="privacyAccepted"
@@ -179,7 +196,10 @@ export default function ContactForm() {
             className="mt-1 h-4 w-4 accent-brand"
             required
           />
-          <label htmlFor="privacyAccepted" className="text-sm text-muted leading-relaxed">
+          <label
+            htmlFor="privacyAccepted"
+            className="text-sm text-muted leading-relaxed"
+          >
             J’accepte la{" "}
             <Link
               href="/politique-de-confidentialite"
@@ -207,6 +227,17 @@ export default function ContactForm() {
           )}
         </button>
       </form>
+      {success && (
+          <div className="my-6 p-4 rounded-xl bg-brand-soft border border-border text-brand">
+            Merci ! Votre message a été envoyé avec succès.
+          </div>
+        )}
+
+        {error && (
+          <div className="my-6 p-4 rounded-xl bg-surface-2 border border-border text-text">
+            {error}
+          </div>
+        )}
     </>
   )
 }

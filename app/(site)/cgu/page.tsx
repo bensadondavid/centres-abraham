@@ -1,7 +1,7 @@
 export default function CGU() {
   return (
     <div className="min-h-screen bg-surface text-text">
-      <section className="py-20">
+      <section className="py-25 sm:py-40">
         <div className="max-w-4xl mx-auto px-6 space-y-8">
 
           <h1 className="text-4xl font-light text-brand">

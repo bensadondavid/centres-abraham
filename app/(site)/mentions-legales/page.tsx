@@ -1,7 +1,9 @@
+
+
 export default function MentionsLegalesPage() {
   return (
     <div className="min-h-screen bg-surface text-text">
-      <section className="py-20">
+      <section className="py-25 sm:py-40">
         <div className="max-w-4xl mx-auto px-6 space-y-10">
 
           <h1 className="text-4xl font-light text-brand">
@@ -19,8 +21,8 @@ export default function MentionsLegalesPage() {
               <strong>Forme juridique :</strong> Société par Actions Simplifiée (SAS)<br />
               <strong>Capital social :</strong> 1 000, 00 €<br />
               <strong>Siège social :</strong> 15 Villa du Bel Air, 75012 Paris, France<br />
-              <strong>SIRET :</strong> [Numéro SIRET]<br />
-              <strong>RCS :</strong> RCS [Ville] [Numéro]<br />
+              <strong>SIRET :</strong> 100 009 117<br />
+              <strong>RCS :</strong> RCS Paris<br />
               <strong>Email :</strong> centresabraham@gmail.com<br />
               <strong>Téléphone :</strong> 01 83 80 52 49
             </p>

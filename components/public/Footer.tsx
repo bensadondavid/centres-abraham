@@ -4,7 +4,7 @@ import Image from "next/image"
 export default function Footer() {
   return (
     <footer className="bg-surface-2 border-t border-border">
-      <div className="h-fit max-w-6xl mx-auto px-6 pt-12 pb-4 grid grid-rows-4 text-center items-center gap-4 md:pt-16 lg:grid-cols-4 lg:grid-rows-1 lg:items-start lg:justify-center">
+      <div className="h-fit max-w-6xl mx-auto px-6 pt-4 pb-4 grid grid-rows-4 text-center items-center gap-4 sm:pt-12 md:pt-16 lg:grid-cols-4 lg:grid-rows-1 lg:items-start lg:justify-center">
         <div className="">
           {/* Brand */}
              {/* Logo */}

@@ -47,7 +47,7 @@ export default function FAQPage() {
       />
 
       {/* Hero */}
-      <section className="relative py-20 md:py-28">
+      <section className="relative pt-28 pb-12 md:pt-40 md:pb-15">
         <div className="absolute inset-0 bg-linear-to-b from-brand-soft to-transparent" />
         <div className="max-w-4xl mx-auto px-6 relative">
           <h1 className="text-4xl md:text-5xl font-light leading-tight mb-6">

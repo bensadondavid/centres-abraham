@@ -12,7 +12,7 @@ export default function AboutUs() {
     <div className="min-h-screen bg-surface text-text">
       
       {/* Hero */}
-      <section className="relative py-20 md:py-28">
+      <section className="relative pt-28 pb-15 md:pt-40 md:pb-22">
         <div className="absolute inset-0 bg-linear-to-b from-brand-soft to-transparent" />
 
         <div className="max-w-4xl mx-auto px-6 relative">
@@ -26,7 +26,7 @@ export default function AboutUs() {
       </section>
 
       {/* Notre rôle */}
-      <section className="pb-36">
+      <section className="pb-8">
         <div className="max-w-4xl mx-auto px-6">
           <h2 className="text-2xl md:text-3xl font-light mb-8">
             Notre rôle
@@ -54,7 +54,7 @@ export default function AboutUs() {
       </section>
 
       {/* Notre engagement */}
-      <section className="py-16 md:py-20 bg-surface-2">
+      <section className="py-16 md:py-20 bg-linear-to-b from-transparent to-brand-soft">
         <div className="max-w-4xl mx-auto px-6">
           <h2 className="text-2xl md:text-3xl font-light mb-8">
             Notre engagement
