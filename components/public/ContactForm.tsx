@@ -11,7 +11,8 @@ type FormData = {
   email: string
   weightKg: number | ""
   message: string
-  privacyAccepted: boolean
+  privacyAccepted: boolean,
+  company : string
 }
 
 export default function ContactForm() {
@@ -23,6 +24,7 @@ export default function ContactForm() {
     weightKg: "",
     message: "",
     privacyAccepted: false,
+    company : ''
   })
 
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -95,6 +97,7 @@ export default function ContactForm() {
         weightKg: "",
         message: "",
         privacyAccepted: false,
+        company : ''
       })
 
       setTimeout(() => setSuccess(false), 6000)
@@ -174,6 +177,16 @@ export default function ContactForm() {
             className="h-12 w-full rounded-xl border border-border bg-surface px-4 focus:outline-none focus:ring-2 focus:ring-brand/30"
           />
         </div>
+
+        <input
+          type="text"
+          name="company"
+          value={formData.company}
+          onChange={handleChange}
+          tabIndex={-1}
+          autoComplete="off"
+          style={{ display: "none" }}
+        />
 
         <div className="space-y-2">
           <label className="text-sm font-medium">Message</label>

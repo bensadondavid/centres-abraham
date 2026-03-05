@@ -5,12 +5,14 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client-js"
+  provider = "prisma-client"
+  output   = "../lib/generated/prisma"
 }
 
 datasource db {
   provider = "postgresql"
 }
+
 
 enum Role{
   USER
@@ -74,10 +76,10 @@ model VerificationToken {
 model Lead {
   id        String @id @default(cuid())
   email     String 
-  lastname  String? 
-  firstname String? 
+  lastName  String? 
+  firstName String? 
   phone     String
-  weight    Float?
+  weightKg   Float?
   message   String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
